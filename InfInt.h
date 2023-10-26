@@ -41,12 +41,13 @@
 #include <iomanip>
 #include <climits>
 
-//#include <limits.h>
-//#include <stdlib.h>
-
-#ifdef _WIN32
+#ifndef LONG_LONG_MIN
 #define LONG_LONG_MIN LLONG_MIN
+#endif
+#ifndef LONG_LONG_MAX
 #define LONG_LONG_MAX LLONG_MAX
+#endif
+#ifndef ULONG_LONG_MAX
 #define ULONG_LONG_MAX ULLONG_MAX
 #endif
 
@@ -336,7 +337,7 @@ inline InfInt::InfInt(unsigned long long l) : pos(true)
     } while (l > 0);
 }
 
-inline InfInt::InfInt(const InfInt& l) : pos(l.pos), val(l.val)
+inline InfInt::InfInt(const InfInt& l) : val(l.val), pos(l.pos)
 {
     //PROFINY_SCOPE
 }
